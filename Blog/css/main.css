@@ -1,0 +1,38 @@
+
+
+header, footer {
+    padding: 1em;
+    color: grey;
+    clear: left;
+    text-align: center;
+
+}
+article {
+    margin-left: 170px;
+    border-left: 1px solid black;
+    padding: 1em;
+    overflow: auto;
+}
+nav {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    padding: 1em;
+}
+
+tbody{
+
+}
+td{
+  border-bottom:  1px solid red;
+  padding: 2em;
+  background-color: white;
+}
+p{
+  width: 50em;
+ white-space: nowrap;
+ overflow: hidden;
+ text-overflow: ellipsis;
+}
+
+#myTable_filter{float: right;}
