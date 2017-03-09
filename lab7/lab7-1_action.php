@@ -16,9 +16,28 @@ echo 'First Name: '. $lol["firstname"];
 echo '<br>Key: '. $lol["key"];
 
 }
-
+$filename="data.txt";
 $myfile = fopen("data.txt", "r") or die("Unable to open file!");
-$lines = file($myfile, FILE_IGNORE_NEW_LINES);
+
+if ($myfile) {
+   $array = explode("\n", fread($myfile, filesize($filename)));
+}
 fclose($myfile);
+$users = array(array());
+for($x = 0; $x < sizeof($array) ; $x++) {
+$new  = array ($array = explode(",",$array[$x]));
+array_push($users, $new);
+ };
+
+
+ for($x = 0; $x < sizeof($users) ; $x++) {
+
+   for($y = 0; $y < sizeof($users[$x]) ; $y++) {
+
+print_r($users[$x][$y]);
+    };
+
+  };
+
 
  ?>
