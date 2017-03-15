@@ -1,38 +1,37 @@
-<!DOCTYPE html>
-<html>
+CREATE DATABASE IF NOT EXISTS 360Blog;
 
-<p>Here are some results:</p>
 
-<?php
 
-$host = "localhost";
-$database = "lab8";
-$user = "webuser";
-$password = "P@ssw0rd";
+drop table post;
+CREATE TABLE post(
+ID int NOT NULL AUTO_INCREMENT primary key,
+topic varchar(255),
+theText varchar(500),
+postStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+userName varchar(255),
+ FOREIGN KEY (userName) REFERENCES blogUser(userName) ON DELETE CASCADE
+);
 
-$connection = mysqli_connect($host, $user, $password, $database);
+CREATE TABLE postComment(
+ID int NOT NULL AUTO_INCREMENT primary key,
+postID int NOT NULL,   
+userName varchar(255) NOT NULL,
+topic varchar(255),
+postStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (userName) REFERENCES blogUser(userName) ON DELETE CASCADE,
+FOREIGN KEY (postID) REFERENCES post(ID) ON DELETE CASCADE
+);
 
-$error = mysqli_connect_error();
-if($error != null)
-{
-  $output = "<p>Unable to connect to database!</p>";
-  exit($output);
-}
-else
-{
-    //good connection, so do you thing
-    $sql = "SELECT * FROM users;";
+drop table blogUser;
+CREATE TABLE blogUser( 
+userName varchar(255) primary Key,
+pass varchar(255),
+LastName varchar(255),
+FirstName varchar(255),
+email varchar(255),
+bio varchar(255),
+userStatus tinyInt DEFAULT 1,
+userType tinyInt,
+dp LONGBLOB 
 
-    $results = mysqli_query($connection, $sql);
-
-    //and fetch requsults
-    while ($row = mysqli_fetch_assoc($results))
-    {
-      echo $row['username']." ".$row['firstName']." ".$row['lastName']." ".$row['email']." ".$row['password']."<br/>";
-    }
-
-    mysqli_free_result($results);
-    mysqli_close($connection);
-}
-?>
-</html>
+);

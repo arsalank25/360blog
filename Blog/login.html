@@ -2,6 +2,8 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
 </head>
 <body>
 
@@ -11,19 +13,12 @@
    <h1>Lets Travel</h1>
 </header>
 
-<nav>
-  <ul>
-    <li><a href="/Blog/home.html">Home</a></li>
-    <li><a href="#">Contact us</a></li>
-    <li><a href="#">Help</a></li>
-    <li><a href="/Blog/login.html">Log In</a></li>
-    <li><a href="/Blog/register.html">Register</a></li>
-  </ul>
-</nav>
+<div w3-include-html="navbar.html"></div>
+
 
 <article>
 
-<form method="post" action="newuser.php" id="aForm" >
+<form method="post" action="php/login.php" id="aForm" >
     <fieldset>
   <div class="imgcontainer">
     <img src="image/userIcon.png" alt="Avatar" class="avatar">
@@ -55,4 +50,7 @@
 </div>
 
 </body>
+<script>
+w3IncludeHTML();
+</script>
 </html>
