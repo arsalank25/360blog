@@ -13,34 +13,38 @@
 
 <nav>
   <ul>
-    <li><a href="#">Home</a></li>
+    <li><a href="/Blog/home.html">Home</a></li>
     <li><a href="#">Contact us</a></li>
     <li><a href="#">Help</a></li>
+    <li><a href="/Blog/login.html">Log In</a></li>
+    <li><a href="/Blog/register.html">Register</a></li>
   </ul>
 </nav>
 
 <article>
 
-  <form action="/logIn.php">
+<form method="post" action="newuser.php" id="aForm" >
+    <fieldset>
   <div class="imgcontainer">
-    <img src="img.png" alt="Avatar" class="avatar">
+    <img src="image/userIcon.png" alt="Avatar" class="avatar">
   </div>
 
-  <div class="container">
+  <div class="container"><span>
     <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="userName" required>
-
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="pass" required>
-
-    <button type="submit">Login</button>
+    <input type="text" placeholder="Enter Username" name="userName" required></span>
+    <span>
+    <label><b>Password </b></label>
+    <input type="password" placeholder="Enter Password" name="pass" required></span>
+    <span>
+    <button type="submit">Login</button></span>
 
   </div>
 
   <div class="container" >
     <button type="button" class="cancelbtn">Cancel</button>
-    <a href="#"> Forgot password?</a>
+    <span id='forgotPass'> <a href="#"> Forgot password?</a></span>
   </div>
+</fieldset>
 </form>
 
 

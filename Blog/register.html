@@ -2,6 +2,21 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+
+<script type="text/javascript" src="script/validate.js"></script>
+<script type="text/javascript">
+
+
+<!-- Password checking script here!! -->
+function checkPasswordMatch(e) {
+    if (document.getElementById('pass').value != document.getElementById('re-pass').value) {
+      makeRed(document.getElementById('pass'));
+      makeRed(document.getElementById('re-pass'));
+      alert('The two passwords did not match');
+      e.preventDefault();
+      }
+}
+</script>
 </head>
 <body>
 
@@ -13,34 +28,49 @@
 
 <nav>
   <ul>
-    <li><a href="#">Home</a></li>
+    <li><a href="/Blog/home.html">Home</a></li>
     <li><a href="#">Contact us</a></li>
     <li><a href="#">Help</a></li>
+    <li><a href="/Blog/login.html">Log In</a></li>
+    <li><a href="/Blog/register.html">Register</a></li>
   </ul>
 </nav>
 
 <article>
 
-  <form action="/logIn.php">
+<form method="post" action="newuser.php" id="aForm" >
+    <fieldset>
   <div class="imgcontainer">
-    <img src="img.png" alt="Avatar" class="avatar">
+    <img src="image/userIcon.png" alt="Avatar" class="avatar">
   </div>
 
-  <div class="container">
-    <label><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="userName" required>
+<div class="centerInput"> <input type="file" name="pic" accept="image/*"></div>
+    <div class="centerInput"><label><b>Username :</b></label>
+    <input type="text" placeholder="Enter Username" id="userName" name="userName" required></div>
 
-    <label><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="pass" required>
+    <div class="centerInput"><label><b>First Name</b></label>
+    <input type="text" placeholder="Enter Name" id="firstName" name="firstName" required></div>
 
-    <button type="submit">Login</button>
+    <div class="centerInput"><label><b>Last Name</b></label>
+    <input type="text" placeholder="Last Name" id="lastName" name="lastName" required></div>
 
-  </div>
+    <div class="centerInput"><label><b>Password  :</b></label>
+    <input type="password" placeholder="Enter Password" id="pass"  name="pass" required></div>
 
-  <div class="container" >
-    <button type="button" class="cancelbtn">Cancel</button>
-    <a href="#"> Forgot password?</a>
-  </div>
+    <div class="centerInput"><label><b>Re-enter:</b></label>
+    <input type="password" placeholder="Enter Password" id="re-pass" name="re-pass" required></div>
+
+
+    <div class="centerInput"><label><b>E-mail:</b></label>
+    <input type="text" placeholder="Enter Email" id="lastName" name="lastName" required></div>
+
+
+    <div class="centerInput"><button type="submit">Register</button></div>
+
+
+
+
+</fieldset>
 </form>
 
 

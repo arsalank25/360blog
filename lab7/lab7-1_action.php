@@ -1,43 +1,35 @@
 <?php
 $firstname ;
 $key;
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $lol = $_POST;}
 else {
   $lol = $_GET;
 }
-
 if ( isset($lol["firstname"]) && isset($lol["key"]) ){
 $firstname = $lol["firstname"];
 $key= $lol["key"];
-
 echo 'First Name: '. $lol["firstname"];
 echo '<br>Key: '. $lol["key"];
-
 }
 $filename="data.txt";
-$myfile = fopen("data.txt", "r") or die("Unable to open file!");
+$lines = file($filename);
+$users = array();
+foreach($lines as $line_num => $line)
+{
+$temp = explode(",", $line);
+array_push($users, $temp);
+};
 
-if ($myfile) {
-   $array = explode("\n", fread($myfile, filesize($filename)));
+$output ="<h2>You fucked up</h2>";
+
+foreach ($users as $user) {
+
+if (strcmp($user[0],$key) == 0 && strcmp(strtolower($user[1]),strtolower($firstname)) ==0) {
+ $output = '<h2>' . $user[1] . '\'s coffee choice </h2><br> <img src=' . $user[3] . '.jpg"> <br>' . $user[2]   ;
 }
-fclose($myfile);
-$users = array(array());
-for($x = 0; $x < sizeof($array) ; $x++) {
-$new  = array ($array = explode(",",$array[$x]));
-array_push($users, $new);
- };
+}
 
-
- for($x = 0; $x < sizeof($users) ; $x++) {
-
-   for($y = 0; $y < sizeof($users[$x]) ; $y++) {
-
-print_r($users[$x][$y]);
-    };
-
-  };
-
+echo $output;
 
  ?>
