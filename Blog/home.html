@@ -20,6 +20,10 @@
 
 
 <article>
+  <?php
+  $name = "what you gonna do ";
+  echo $name;
+  ?>
   <table id="myTable" class="display">
       <thead>
           <tr>
@@ -56,13 +60,15 @@
 
       </tbody>
   </table>
-  <form action="/action_page.php">
+  <form action="php/postIt.php">
 
-        <div class="centerInput"><label><b>Title:</b></label>
-        <input type="text" placeholder="title" name="title" required></div>
+  <div class="centerInput"><label><b>Title:</b></label>
+  <input type="text" placeholder="title" name="title" required></div>
 
-  <div class="centerInput">  <textarea rows="4" cols="100" name="post" form="usrform">
-    Enter Post here</textarea></div>
+  <div class="centerInput">
+     <textarea rows="4" cols="100" name="post" > Enter Post here</textarea>
+  </div>
+
   <div class="centerInput">
         <button type="submit">Post</button></div>
 </form>
