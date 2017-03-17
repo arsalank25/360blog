@@ -22,7 +22,7 @@ if ( mysqli_num_rows($results)>0) {
   $sql = " INSERT INTO bloguser(userName, firstName, lastName, email,pass) VALUES ('" . $lol["userName"] . "','" . $lol["firstName"] . "','" . $lol["lastName"] . "','" . $lol["email"] . "','" . md5($lol["pass"]) . "') ;";
   $results = mysqli_query($connection, $sql);
 
-    echo "User account has been created";
+
   }
 }
 
@@ -31,5 +31,5 @@ if ( mysqli_num_rows($results)>0) {
 
 
 mysqli_close($connection);
-
+header('Location: '. '../login.php');
 ?>

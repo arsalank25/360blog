@@ -15,10 +15,10 @@ else{
   $sql = " INSERT INTO post(topic, theText) VALUES ('" . $lol["title"] . "','" . $lol["post"]  . "') ;";
   $results = mysqli_query($connection, $sql);
 
-    echo "User post has been created";
 }
 
 
 mysqli_close($connection);
 
+header('Location: '. '../home.php');
 ?>
