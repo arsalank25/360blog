@@ -1,5 +1,28 @@
 
 
+#aForm {
+  width: 10em;
+  margin: auto;
+  padding-right: 18em;
+}
+
+
+button{
+  margin:  0em 7em 1em 7em ;
+
+}
+#forgotPass {
+    margin:  0em 7em 1em 4em ;
+}
+
+.centerInput{
+
+  text-align: center;
+  left: auto;
+  right: auto;
+}
+
+
 header, footer {
     padding: 1em;
     color: grey;
