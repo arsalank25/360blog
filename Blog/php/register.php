@@ -31,5 +31,5 @@ if ( mysqli_num_rows($results)>0) {
 
 
 mysqli_close($connection);
-header('Location: '. '../login.php');
+header('Location: '. '../login.html');
 ?>

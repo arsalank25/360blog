@@ -23,5 +23,6 @@ $stmt = $connection->prepare($sql);
 $stmt->bind_param("iss", $postID, $userName, $comment);
 // set parameters and execute
 $stmt->execute();}
+header('Refresh: 0 ; url=/Blog/post.php?id=' . $postID );
 mysqli_close($connection);
 ?>
