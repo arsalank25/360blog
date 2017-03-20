@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2017 at 06:44 AM
+-- Generation Time: Mar 20, 2017 at 02:02 AM
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -43,7 +43,10 @@ CREATE TABLE `bloguser` (
 --
 
 INSERT INTO `bloguser` (`userName`, `pass`, `LastName`, `FirstName`, `email`, `bio`, `userStatus`, `userType`, `dp`) VALUES
-('arsalan', '1a1dc91c907325c69271ddf0c944bc72', 'Khan', 'Arsalan', 'arsalank25@gmail.com', NULL, 1, NULL, NULL),
+('aaa', '4124bc0a9335c27f086f24ba207a4912', 'Khan', 'Arsalan', 'arsalankaa25@gmail.com', NULL, 1, NULL, NULL),
+('Arsalanaa', '4124bc0a9335c27f086f24ba207a4912', 'Khan', 'Arsalan', 'arsalank2aa5@gmail.com', NULL, 1, NULL, NULL),
+('Arsalangg', '73c18c59a39b18382081ec00bb456d43', 'Khan', 'Arsalan', 'arsalank25@gmaiggl.com', NULL, 1, NULL, NULL),
+('Arsalanqq', '099b3b060154898840f0ebdfb46ec78f', 'Khan', 'Arsalan', 'arsalank25@gmail.comq', NULL, 1, NULL, NULL),
 ('jimmy', 'bf24ea1bbc01cb00b1603c3aa8b292ee', 'jim', 'jim', 'jim@hotmail.com', NULL, 1, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -85,26 +88,17 @@ CREATE TABLE `postcomment` (
   `postStamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `postcomment`
+-- Table structure for table `userimages`
 --
 
-INSERT INTO `postcomment` (`ID`, `postID`, `userName`, `comment`, `postStamp`) VALUES
-(19, 6, 'arsalan', 'sfaasfasfdads', '2017-03-16 23:41:11'),
-(21, 7, 'arsalan', 'safasfdasfdasfdasf', '2017-03-16 23:42:51'),
-(33, 10, 'arsalan', '  asdfasdf', '2017-03-16 23:50:32'),
-(34, 6, 'arsalan', '  this is indeed a title ', '2017-03-16 23:50:48'),
-(35, 6, 'arsalan', '  this is indeed a title sadfasdf', '2017-03-16 23:53:53'),
-(36, 6, 'arsalan', '  this is indeed a title sadfasdf', '2017-03-16 23:54:02'),
-(45, 6, 'arsalan', '  sadfasdf', '2017-03-17 00:07:10'),
-(46, 6, 'arsalan', '  this is a new coment \r\n', '2017-03-17 00:07:17'),
-(47, 6, 'arsalan', '  brand spanking new ', '2017-03-17 00:07:25'),
-(48, 6, 'arsalan', '  brand spanking new ', '2017-03-17 00:07:26'),
-(49, 7, 'arsalan', '  new comment yo', '2017-03-17 00:07:48'),
-(50, 7, 'arsalan', '  SICKKK', '2017-03-17 00:19:44'),
-(51, 7, 'arsalan', '  afkjhasdfsdfafasf', '2017-03-17 00:23:13'),
-(52, 7, 'arsalan', 'new new new ', '2017-03-17 00:23:45'),
-(53, 7, 'arsalan', '  hew comment ', '2017-03-17 02:36:53');
+CREATE TABLE `userimages` (
+  `userName` varchar(255) NOT NULL,
+  `contentType` varchar(255) DEFAULT NULL,
+  `image` blob
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -130,6 +124,12 @@ ALTER TABLE `postcomment`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `userName` (`userName`),
   ADD KEY `postID` (`postID`);
+
+--
+-- Indexes for table `userimages`
+--
+ALTER TABLE `userimages`
+  ADD PRIMARY KEY (`userName`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -161,6 +161,12 @@ ALTER TABLE `post`
 ALTER TABLE `postcomment`
   ADD CONSTRAINT `postcomment_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `bloguser` (`userName`) ON DELETE CASCADE,
   ADD CONSTRAINT `postcomment_ibfk_2` FOREIGN KEY (`postID`) REFERENCES `post` (`ID`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `userimages`
+--
+ALTER TABLE `userimages`
+  ADD CONSTRAINT `userimages_ibfk_1` FOREIGN KEY (`userName`) REFERENCES `bloguser` (`userName`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

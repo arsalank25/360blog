@@ -18,11 +18,15 @@ $results = mysqli_query($connection, $sql);
 if ( mysqli_num_rows($results)>0) {
   echo "User alrady exisists with the same username and/or email address <br>";
   echo "<a href='../register.html'>retun to user Entry</a>";
-} else {
+} else{
+
+$sql = " INSERT INTO bloguser(userName, firstName, lastName, email,pass) VALUES ('" . $lol["userName"] . "','" . $lol["firstName"] . "','" . $lol["lastName"] . "','" . $lol["email"] . "','" . md5($lol["pass"]) . "') ;";
+$results = mysqli_query($connection, $sql);
+
 
   //uploading file
 
-  $target_dir = "uploads/";
+  $target_dir = "../uploads/";
   $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
   $uploadOk = 1;
   $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -60,29 +64,10 @@ if ( mysqli_num_rows($results)>0) {
       } else {
           echo "Sorry, there was an error uploading your file.";
       }}
-
-    echo "User account has been created";
-
-    $sql = " INSERT INTO bloguser(userName, firstName, lastName, email,pass) VALUES ('" . $lol["userName"] . "','" . $lol["firstName"] . "','" . $lol["lastName"] . "','" . $lol["email"] . "','" . md5($lol["pass"]) . "') ;";
-    $results = mysqli_query($connection, $sql);
-
-
-    $sql = " SELECT userID FROM bloguser WHERE userName = '" . $lol["username"] . "' ;";
-    $results = mysqli_query($connection, $sql);
-    //$userID = $results['userID'];
-    while($row = mysqli_fetch_assoc($results))
-  {
-  // the keys match the field names from the table
-
-  $userID = $row['userID'];//echo "User ".   $row["username"] ."<br>First Name ".   $row["firstName"] ."<br>Last Name ".   $row["lastName"] ."<br>Email: ".   $row["email"] ;
-
-  }
-
-
 $imagedata = file_get_contents($target_file);
 //$imagedata = file_get_contents($_FILES['fileToUpload']['tmp_name']);
 //store the contents of the files in memory in preparation for upload
-$sql = "INSERT INTO userImages (userID, contentType, image) VALUES(?,?,?)";
+$sql = "INSERT INTO userimages (userName, contentType, image) VALUES(?,?,?)";
  // create a new statement to insert the image into the table. Recall
 // that the ? is a placeholder to variable data.
 $stmt = mysqli_stmt_init($connection); //init prepared statement object
@@ -90,7 +75,7 @@ $stmt = mysqli_stmt_init($connection); //init prepared statement object
 mysqli_stmt_prepare($stmt, $sql); // register the query
 
 $null = NULL;
-mysqli_stmt_bind_param($stmt, "isb", $userID, $imageFileType, $null);
+mysqli_stmt_bind_param($stmt, "isb", $lol["userName"], $imageFileType, $null);
 // bind the variable data into the prepared statement. You could replace
 // $null with $data here and it also works. You can review the details
 // of this function on php.net. The second argument defines the type of
