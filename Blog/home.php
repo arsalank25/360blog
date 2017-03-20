@@ -1,6 +1,7 @@
 <?php
 include 'php/conn.php';
 
+  session_start();
 $sql = "SELECT  * from post";
 // run the query ?>
 <!DOCTYPE html>
@@ -19,7 +20,7 @@ $sql = "SELECT  * from post";
 </header>
 
 </header>
-<div w3-include-html="navbar.html"></div>
+<?php include 'navbar.php';?>
 <article>
 
   <table id="myTable" class="display">
@@ -39,12 +40,14 @@ $sql = "SELECT  * from post";
             // the keys match the field names from the table
 
             echo "<td><a href='/Blog/post.php?id=" . $row['ID'] . "'><h3>" . $row['topic'] . "</h3></a>";
-            echo $row['theText'] . "<h4>" . $row['userName'] . $row['postStamp'] . "</h4></td>" ;
+            echo $row['theText'] . "<h4> By: " . $row['userName'] . "<br>" . $row['postStamp'] . "</h4></td>" ;
             echo "</tr>";
 
 
             }
             }
+
+            // echo '<script type="text/javascript">alert("' . $_SESSION["sUserName"]  . '");</script>';
              ?>
 
 

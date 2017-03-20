@@ -26,8 +26,9 @@ button{
 header, footer {
     padding: 1em;
     color: grey;
-    clear: left;
     text-align: center;
+    left: auto;
+    right: auto;
 
 }
 article {
@@ -39,8 +40,10 @@ article {
 nav {
     float: left;
     max-width: 160px;
-    margin: 0;
     padding: 1em;
+    margin-bottom:  100%;
+    
+
 }
 
 tbody{

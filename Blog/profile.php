@@ -11,13 +11,7 @@
    <h1>Lets Travel</h1>
 </header>
 
-<nav>
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Contact us</a></li>
-    <li><a href="#">Help</a></li>
-  </ul>
-</nav>
+<?php include 'navbar.php';?>
 
 <article>
 some random content

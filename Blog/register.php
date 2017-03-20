@@ -8,7 +8,7 @@
 <script type="text/javascript">
 
 
-<!-- Password checking script here!! -->
+<!--  checking script here!! -->
 function checkPasswordMatch(e) {
     if (document.getElementById('pass').value != document.getElementById('re-pass').value) {
       makeRed(document.getElementById('pass'));
@@ -16,6 +16,11 @@ function checkPasswordMatch(e) {
       alert('The two passwords did not match');
       e.preventDefault();
       }
+    else if (document.getElementById('fileToUpload').value=='') {
+
+          alert("empty input file");
+          e.preventDefault();
+    }
 }
 </script>
 </head>
@@ -26,7 +31,7 @@ function checkPasswordMatch(e) {
 <header>
    <h1>Lets Travel</h1>
 </header>
-<div w3-include-html="navbar.html"></div>
+<?php include 'navbar.php';?>
 <article>
 
 <form method="post" action="php/register.php" id="aForm"  enctype="multipart/form-data">
@@ -35,7 +40,7 @@ function checkPasswordMatch(e) {
     <img src="image/userIcon.png" alt="Avatar" class="avatar">
   </div>
 
-<div class="centerInput"> <input type="file" name="fileToUpload" id="fileToUpload"></div>
+<div class="centerInput"> <input type="file" name="fileToUpload" id="fileToUpload" required></div>
     <div class="centerInput"><label><b>Username :</b></label>
     <input type="text" placeholder="Enter Username" id="userName" name="userName" required></div>
 

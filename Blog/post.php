@@ -17,17 +17,16 @@
    <h1>Lets Travel</h1>
 </header>
 
-<div w3-include-html="navbar.html"></div>
-
-
+<?php include 'navbar.php';?>
 <?php
 
 include 'php/conn.php';
-$postID = (integer)$_GET['id'];
+$postIDint = (integer)$_GET['id'];
+
 $sql = "SELECT * FROM post WHERE ID=?";
 $stmt = mysqli_prepare($connection, $sql);
 /* bind parameters for markers */
-    mysqli_stmt_bind_param($stmt, "i", $postID);
+    mysqli_stmt_bind_param($stmt, "i", $postIDint);
 
     /* execute query */
     mysqli_stmt_execute($stmt);
@@ -48,16 +47,17 @@ mysqli_stmt_close($stmt);
 $sql = "SELECT * FROM postcomment WHERE postID=?";
 $stmt = mysqli_prepare($connection, $sql);
 /* bind parameters for markers */
-    mysqli_stmt_bind_param($stmt, "i", $postID );
+    mysqli_stmt_bind_param($stmt, "i", $postIDint );
 
     /* execute query */
     mysqli_stmt_execute($stmt);
 
     mysqli_stmt_bind_result($stmt,$ID,$postID,$userName,$comment, $postStamp);
 
+echo '<hr><div class="centerInput"><h3> Comments  </h3></div><br/><hr>';
     /* fetch value */
     while (mysqli_stmt_fetch($stmt)) {
-  echo $comment . '-' . $userName . '-' . $postStamp . '-' .  '<br/>';
+  echo '<div class="centerInput">' .  $comment . '<br><br>' . $userName . '<br>' . $postStamp . '<br>' .  '</div><hr>';
   }
 
 mysqli_stmt_close($stmt);
@@ -68,17 +68,12 @@ mysqli_close($connection);
 
 
 
-<form action="php/commentIt.php">
+<form action="php/commentIt.php" method="post">
 <div class="centerInput">  <textarea maxlength="499" rows="4" cols="100" name="comment"  placeholder="Enter Comment here">
-  </textarea></div>
-
-
-    <input type='hidden' name="postID" value=" <?php echo $postID;  ?> " />
-
-        <input type='hidden' name="userName" value="arsalan" />
-
-<div class="centerInput">
-      <button type="submit">Post</button></div>
+</textarea></div>
+<input type='hidden' name="postID" value=" <?php echo $postIDint;  ?> " />
+<input type='hidden' name="userName" value="arsalan" />
+<div class="centerInput"><button type="submit">Post</button></div>
 </form>
 
 <footer>Copyright &copy; </footer>

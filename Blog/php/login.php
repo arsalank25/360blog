@@ -9,27 +9,33 @@ else {
 }
 if ( !isset($lol["userName"]) && !isset($lol["pass"]) ) {
   echo "You have encountered an error please go back and try again <br>";
-  echo "<a href='lab8-1.html'>retun to user Entry</a>";}
+  header("Refresh:2; url=../login.php");}
 else{
 
 $sql = " SELECT * FROM bloguser where userName = '" . $lol["userName"]  . "' AND pass = '" . md5($lol["pass"])  . "'  ;";
 $results = mysqli_query($connection, $sql);
 
 if ( mysqli_num_rows($results)==0) {
-  echo "User name or password in correct <br>";
-  echo "<a href='lab8-2.html'>retun to user Entry</a>";
+  echo "User name or password incorrect. Try again. <br>";
+  header("Refresh:2; url=../login.php");
 } else {
+  if ($result = mysqli_query($connection, $sql)) {
+  // fetch a record from result set into an associative array
+  echo "user	has a	valid credentials, you are now logged in";
 
+  session_start();
 
-    echo "user	has a	valid credentials";
+  $_SESSION["login"] = true;
+  while($row = mysqli_fetch_assoc($result))
+  {
+  // the keys match the field names from the table
+
+    $_SESSION["sUserName"] = $row['userName'] ;
+    $_SESSION["sUserStatus"] = $row['userStatus'] ;
+    $_SESSION["sUserType"] = $row['userType'] ;
+  }}
+    mysqli_close($connection);
+    header("Refresh:2; url=../home.php");
   }
 }
-
-
-
-//and fetch requsults
-
-
-mysqli_close($connection);
-
 ?>

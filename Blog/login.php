@@ -13,9 +13,7 @@
    <h1>Lets Travel</h1>
 </header>
 
-<div w3-include-html="navbar.html"></div>
-
-
+<?php include 'navbar.php';?>
 <article>
 
 <form method="post" action="php/login.php" id="aForm" >
