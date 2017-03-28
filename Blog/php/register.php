@@ -1,7 +1,7 @@
 
 <?php
 include 'conn.php';
-//ini_set('display_errors', '0');
+ini_set('display_errors', '0');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $lol = $_POST;}

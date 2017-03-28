@@ -14,13 +14,13 @@
             <?php
             include 'php/conn.php';
 
-            $sql = "SELECT * FROM post INNER JOIN bloguser ON post.userName = bloguser.userName";
+            $sql = "SELECT email, topic, bloguser.userName, userType FROM post INNER JOIN bloguser ON post.userName = bloguser.userName GROUP BY bloguser.userName ";
             // run the query
             if ($result = mysqli_query($connection, $sql)) {
             // fetch a record from result set into an associative array
             while($row = mysqli_fetch_assoc($result))
             { // the keys match the field names from the table
-            echo "<td><a href='/Blog/post.php?id=" . $row['ID'] . "'><h3>" . $row['topic'] . "</h3></a>";
+            echo "<td>";
             echo $row['theText'] . "<h4> By: ";
             if ($row['userType']==1) {
 

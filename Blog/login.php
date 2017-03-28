@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 
-<script src="https://www.w3schools.com/lib/w3data.js"></script>
-</head>
-<body>
-
-<div class="container">
-
-<header>
-   <h1>Lets Travel</h1>
-</header>
 
 <?php include 'navbar.php';?>
 <article>

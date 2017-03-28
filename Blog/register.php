@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 
 <script type="text/javascript" src="script/validate.js"></script>
 <script src="https://www.w3schools.com/lib/w3data.js"></script>
@@ -23,14 +19,7 @@ function checkPasswordMatch(e) {
     }
 }
 </script>
-</head>
-<body>
 
-<div class="container">
-
-<header>
-   <h1>Lets Travel</h1>
-</header>
 <?php include 'navbar.php';?>
 <article>
 

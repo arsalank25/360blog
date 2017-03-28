@@ -1,50 +1,40 @@
 
 
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
-<body>
-
-
-<script src="https://www.w3schools.com/lib/w3data.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
-<div class="container">
-
-<header>
-   <h1>Lets Travel</h1>
-</header>
-
 <?php include 'navbar.php';?>
 <?php
 
 include 'php/conn.php';
 $postIDint = (integer)$_GET['id'];
 
-$sql = "SELECT * FROM post WHERE ID=?";
+$sql = "SELECT email, topic, bloguser.userName, userType,theText  FROM post INNER JOIN bloguser ON post.userName = bloguser.userName WHERE ID = ?";
 $stmt = mysqli_prepare($connection, $sql);
-/* bind parameters for markers */
+
+    /* bind parameters for markers */
     mysqli_stmt_bind_param($stmt, "i", $postIDint);
 
     /* execute query */
     mysqli_stmt_execute($stmt);
 
-    mysqli_stmt_bind_result($stmt,$id, $topic, $theText, $postStamp, $userName);
+    mysqli_stmt_bind_result($stmt,$email, $topic, $userName, $userType,$theText);
 
     /* fetch value */
     mysqli_stmt_fetch($stmt);
+    echo "<article>";
 
-echo '<div class="centerInput"> <h2>'  . $topic . '</h2></div> ';
+    echo '<div class="centerInput"> <h2>'  . $topic . '</h2></div> ';
 
-echo '<div class="centerInput"> '  . $theText . '</div> <br> <br>';
+    echo '<div class="centerInput"> '  . $theText . '</div> <br> <br>';
 
-echo '<div class="centerInput"> <b>'  . $userName . '</b></div> ';
-mysqli_stmt_close($stmt);
+    if ($userType==1) {
+        echo  "<div class='centerInput'>  <b><span style='color:red;'><a href='profile.php?userName=" . $userName .  "'>" . $userName .  "</a> - Admin</span></b></div>";
+    }
+    else {
+      echo "<div class='centerInput'>  <b><a href='profile.php?userName=" . $userName .  "'>" . $userName .  "</a></b></div>";
+     }
+    mysqli_stmt_close($stmt);
 
 
-$sql = "SELECT * FROM postcomment WHERE postID=?";
+$sql = "SELECT ID, postcomment.userName,postID, postStamp, userType ,comment FROM postcomment INNER JOIN bloguser ON postcomment.userName = bloguser.userName WHERE postID =?";
 $stmt = mysqli_prepare($connection, $sql);
 /* bind parameters for markers */
     mysqli_stmt_bind_param($stmt, "i", $postIDint );
@@ -52,14 +42,28 @@ $stmt = mysqli_prepare($connection, $sql);
     /* execute query */
     mysqli_stmt_execute($stmt);
 
-    mysqli_stmt_bind_result($stmt,$ID,$postID,$userName,$comment, $postStamp);
+    mysqli_stmt_bind_result($stmt,$ID,$userName,$postID,$postStamp,$userType,$comment );
 
 echo '<hr><div class="centerInput"><h3> Comments  </h3></div><br/><hr>';
     /* fetch value */
     while (mysqli_stmt_fetch($stmt)) {
-  echo '<div class="centerInput">' .  $comment . '<br><br>' . $userName . '<br>' . $postStamp . '<br>' .  '</div><hr>';
+  echo '<div class="centerInput">' .  $comment . ' - ' ;
+
+  if ($userType==1) {
+      echo  "<div class='centerInput'>  <b><span style='color:red;'><a href='profile.php?userName=" . $userName .  "'>" . $userName .  "</a> - Admin</span></b></div>";
+  }
+  else {
+    echo "<div class='centerInput'>  <b><a href='profile.php?userName=" . $userName .  "'>" . $userName .  "</a></b></div>";
+   }
+  echo  $postStamp . '<br>' .  '</div>';
+
+  if (isset($_SESSION["sUserType"]) ) {
+    if ($_SESSION["sUserType"]==1) {echo "<form class='centerInput' action='php/deleteComment.php'><input type='hidden' name='var' value=" . $ID . "> <button type='submit'>Delete comment</button></form>";}
   }
 
+  echo "<hr>";
+  }
+echo "</article>";
 mysqli_stmt_close($stmt);
 mysqli_close($connection);
     /* close statement */
