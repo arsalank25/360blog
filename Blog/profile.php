@@ -1,5 +1,5 @@
 
-<?php include 'navbar.php';?>
+<?php include 'php/navbar.php';?>
 
 <article>
 
@@ -21,7 +21,6 @@ if ( mysqli_num_rows($results)==0) {
 {
 // the keys match the field names from the table
 
-echo "User ".   $row["userName"] ."<br>First Name ".   $row["FirstName"] ."<br>Last Name ".   $row["LastName"] ."<br>Email: ".   $row["email"]  ;
 
 $sql = "SELECT contentType, image FROM userImages where userName=?";
 // build the prepared statement SELECTing on the userID for the user
@@ -40,19 +39,31 @@ mysqli_stmt_fetch($stmt);
 // as the image type (which is stored in $type)
 mysqli_stmt_close($stmt);
 // release the statement
-
+    echo "<div class='centerInput'>";
 		echo '<br><img src="data:image/'.$type.';base64,'.base64_encode($image).'"/>';
 
+    echo "<br>User ".   $row["userName"] ."<br>First Name ".   $row["FirstName"] ."<br>Last Name ".   $row["LastName"] ."<br>Email: ".   $row["email"] . "</div>" ;
+
+
+    $dbUserName= $row["userName"];
 }
 
 
-
       }}
+      if (isset($_SESSION["sUserType"]) ) {
+        if ($_SESSION["sUserType"]==1) {echo "<form action='editProfile.php' class='centerInput' method='post'>
+          <input type='submit' value='Edit Profile'>
+        </form>";}
+      }
+      if (isset($_SESSION["sUserName"]) ) {
+        if (strcmp($_SESSION["sUserName"],$dbUserName) == 0  ) {
+          echo "<form action='editProfile.php' class='centerInput' method='post'>
+          <input type='submit' value='Edit Profile'></form>";}
+      }
 
  ?>
 
 
-</article>
 
 <footer>Copyright &copy; </footer>
 

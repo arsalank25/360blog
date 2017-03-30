@@ -20,7 +20,7 @@ function checkPasswordMatch(e) {
 }
 </script>
 
-<?php include 'navbar.php';?>
+<?php include 'php/navbar.php';?>
 <article>
 
 <form method="post" action="php/register.php" id="aForm"  enctype="multipart/form-data">
@@ -30,23 +30,23 @@ function checkPasswordMatch(e) {
   </div>
 
 <div class="centerInput"> <input type="file" name="fileToUpload" id="fileToUpload" required></div>
-    <div class="centerInput"><label><b>Username :</b></label>
+    <div class="centerInput">
     <input type="text" placeholder="Enter Username" id="userName" name="userName" required></div>
 
-    <div class="centerInput"><label><b>First Name</b></label>
+    <div class="centerInput">
     <input type="text" placeholder="Enter Name" id="firstName" name="firstName" required></div>
 
-    <div class="centerInput"><label><b>Last Name</b></label>
+    <div class="centerInput">
     <input type="text" placeholder="Last Name" id="lastName" name="lastName" required></div>
 
-    <div class="centerInput"><label><b>Password  :</b></label>
+    <div class="centerInput">
     <input type="password" placeholder="Enter Password" id="pass"  name="pass" required></div>
 
-    <div class="centerInput"><label><b>Re-enter:</b></label>
+    <div class="centerInput">
     <input type="password" placeholder="Enter Password" id="re-pass" name="re-pass" required></div>
 
 
-    <div class="centerInput"><label><b>E-mail:</b></label>
+    <div class="centerInput">
     <input type="text" placeholder="Enter Email" id="email" name="email" required></div>
 
 

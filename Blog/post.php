@@ -1,6 +1,6 @@
 
 
-<?php include 'navbar.php';?>
+<?php include 'php/navbar.php';?>
 <?php
 
 include 'php/conn.php';
@@ -63,7 +63,7 @@ echo '<hr><div class="centerInput"><h3> Comments  </h3></div><br/><hr>';
 
   echo "<hr>";
   }
-echo "</article>";
+
 mysqli_stmt_close($stmt);
 mysqli_close($connection);
     /* close statement */
@@ -79,6 +79,7 @@ mysqli_close($connection);
 <input type='hidden' name="userName" value="arsalan" />
 <div class="centerInput"><button type="submit">Post</button></div>
 </form>
+</article>
 
 <footer>Copyright &copy; </footer>
 

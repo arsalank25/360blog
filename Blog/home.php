@@ -1,5 +1,5 @@
 
-<?php include 'navbar.php';?>
+<?php include 'php/navbar.php';?>
 <article>
 
   <table id="myTable" class="display">
@@ -52,7 +52,7 @@
   <input type="text" placeholder="title" name="title" required></div>
 
   <div class="centerInput">
-     <textarea maxlength="2999" rows="4" cols="100" name="post"  placeholder="Enter post here" > </textarea>
+     <textarea maxlength="2999" rows="4" name="post"  placeholder="Enter post here" > </textarea>
   </div>
 
   <div class="centerInput">

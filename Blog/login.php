@@ -1,6 +1,6 @@
 
 
-<?php include 'navbar.php';?>
+<?php include 'php/navbar.php';?>
 <article>
 
 <form method="post" action="php/login.php" id="aForm" >
@@ -16,12 +16,12 @@
     <label><b>Password </b></label>
     <input type="password" placeholder="Enter Password" name="pass" required></span>
     <span>
-    <button type="submit">Login</button></span>
-
+     <div class="centerInput">
+       <button type="submit">Login</button></span>
+     </div>
   </div>
 
-  <div class="container" >
-    <button type="button" class="cancelbtn">Cancel</button>
+  <div class="container centerInput" >
     <span id='forgotPass'> <a href="#"> Forgot password?</a></span>
   </div>
 </fieldset>
